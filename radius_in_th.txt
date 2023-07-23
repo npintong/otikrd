@@ -1,0 +1,45 @@
+Menu Seq
+Language = multi language
+Default = profile -> default (Can not delete)
+
+Dashboard | router | users | profile | Reports
+
+router 
+	- site name
+	- identity name (Nas-Identifier) - radgroupcheck
+	- Hotspot Server (Called-Station-Id) - radgroupcheck
+
+Profile
+	- name
+	- Rate-limit+burst (Mikrotik-Rate-Limit) - radgroupreply
+	- Address-list (Mikrotik-Address-List) - radgroupreply
+	- Redirect Url (WISPr-Redirect-URL) - radgroupreply
+	- Firewall Mangle (MT only) (Mikrotik-Mark-Id) - radgroupreply
+	- Firewall Filter (MT only) (Filter-Id) - radgroupreply
+	- Route (MT only) (Framed-Route) - radgroupreply
+	- Shared-users (Port-Limit) - radgroupcheck (1)
+	- Session Timeout (Session-Timeout) - radgroupreply
+	- Idle Timeout (Idle-Timeout) - radgroupreply (15)
+	- Login time (Login-Time) - radgroupcheck
+	- Validity (Expire-After) - radgroupcheck
+	- Uptime (Max-All-Session) - radgroupchek
+	- IP-Pool (Frame-Pool) - radgroupreply
+	- Profiles (Router)
+
+Users
+	- name
+	- password
+	- Login-by-Mac (setup mac in username and password (set same mikrotik setting))
+	- Route
+	- IP Address
+	- Mac Address
+	
+
+	
+	
+	
+	
+	
+	
+	
+
