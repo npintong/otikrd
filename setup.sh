@@ -337,6 +337,10 @@ policy {
 
 EOF
 
+sleep 1
+systemctl restart freeradius
+sleep 3
+
 echo 
 echo "====================================="
 echo "Allow firewall 1812 , 1813 and 80"
