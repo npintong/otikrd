@@ -106,7 +106,7 @@ echo "Install Web Management"
 echo "====================================="
 echo 
 
-mv /tmp/otikrd /var/www/html/
+mv /tmp/otikrd/otikrd /var/www/html/
 
 sleep 1
 

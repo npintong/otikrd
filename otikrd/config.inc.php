@@ -1,6 +1,6 @@
 <?php
 
-$db_host = "192.168.98.21";
+$db_host = "127.0.0.1";
 $db_user = "otikuser";
 $db_password = "Love@OtikNetWork";
 $db_dbname = "otikdb";
