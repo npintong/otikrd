@@ -47,6 +47,8 @@ if(isset($_POST['cmdLogin'])){
 				$_SESSION['scFilter'] = 'today';
 				$_SESSION['scPackage'] = 'all';
 				$_SESSION['scUsrFilter'] = 'all';
+				$_SESSION['scKeyword'] = '';
+				
 				
 				// permission
 				$_SESSION['pProfile'] = $rows['uPersProfile'];

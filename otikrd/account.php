@@ -73,19 +73,21 @@ if(isset($_POST['btnSearch'])){
     $_SESSION['scPackage'] = 'all';
     $condition .= '';
   }
-  
+
+  if($_REQUEST['pKeyword'] <> ''){
+    $_SESSION['scKeyword'] = $_REQUEST['pKeyword'];
+    $condition .= " AND AC.acUser='".$_SESSION['scKeyword']."' ";
+  }else{
+    $_SESSION['scKeyword'] = '';
+    $condition .= '';
+  }
+
+
   $_SESSION['condition'] = $condition;
 
-}
-/*
-if(!isset($_SESSION['condition'])){
-  $_SESSION['condition'] = '';
-}
-*/
 
-echo  $_SESSION['condition'];
+}
 
-echo $_SESSION['mySession'];
 
 ?>
 
@@ -262,11 +264,12 @@ echo $_SESSION['mySession'];
         <div class="form-group">
           <label for="pFilter">เงื่อนไข</label>
           <select class="form-control" id="pFilter" name="pFilter">
-            <option value="today">วันนี้</option>
-            <option value="week">สัปดาห์นี้</option>
-            <option value="month">เดือนนี้</option>
-            <option value="year">ปีนี้</option>
-            <option value="all">ทั้งหมด</option>
+          
+            <option value="today" <?=$result = ($_SESSION['scFilter'] == 'today') ? ' selected' : '';?>>วันนี้</option>
+            <option value="week" <?=$result = ($_SESSION['scFilter'] == 'week') ? ' selected' : '';?>>สัปดาห์นี้</option>
+            <option value="month" <?=$result = ($_SESSION['scFilter'] == 'month') ? ' selected' : '';?>>เดือนนี้</option>
+            <option value="year" <?=$result = ($_SESSION['scFilter'] == 'year') ? ' selected' : '';?>>ปีนี้</option>
+            <option value="all" <?=$result = ($_SESSION['scFilter'] == 'all') ? ' selected' : '';?>>ทั้งหมด</option>
           </select>
         </div>
 
@@ -279,7 +282,12 @@ echo $_SESSION['mySession'];
 			  $tSQL = "SELECT * FROM tbl_master_profiles";
               $rs = $mcon->query($tSQL);
                 while($rows = $rs->fetch_assoc()){
-                  echo "<option value=\"".$rows['pfID']."\">".$rows['pfName']."</option>";
+                  if($rows['pfID']==$_SESSION['scPackage']){
+                    echo "<option value=\"".$rows['pfID']."\" selected>".$rows['pfName']."</option>";  
+                  }else{
+                    echo "<option value=\"".$rows['pfID']."\">".$rows['pfName']."</option>";
+                  }
+                  
                 }
 
             ?>
@@ -289,7 +297,7 @@ echo $_SESSION['mySession'];
 
         <div class="form-group">
           <label for="sel1">ระบุบัญชี (ปล่อยว่างถ้าไม่ต้องการ)</label>
-          <input type="text" class="form-control">
+          <input type="text" class="form-control" name="pKeyword" id="pKeyword" value="<?=$_SESSION['scKeyword'];?>">
         </div>        
         <button class="btn btn-success" type="submit" name="btnSearch"><span class="glyphicon glyphicon-search"></span> ค้นหา</button>
 
@@ -302,9 +310,13 @@ echo $_SESSION['mySession'];
 
 <?php
   //echo "demo";
-  //echo $_SESSION['scFilter'];
-  //echo $_SESSION['scPackage'];
-
+  /*
+  echo $_SESSION['scFilter'];
+  echo " | ";
+  echo $_SESSION['scPackage'];
+  echo " | ";  
+  echo $_SESSION['scKeyword'];
+  */
 ?>
                     <table class="table-responsive">
 					<table class="table table-condensed table-striped table-hover table-bordered no-margin" style="font-size: 13px;">
