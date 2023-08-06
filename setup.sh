@@ -7,6 +7,15 @@ if [ "$(id -u)" != "0" ]; then
 	exit 1
 fi
 
+# check directory existing
+DIR="/tmp/otikrd/"
+if [ -d "$DIR" ]; then  
+  rm -rf /tmp/otikrd
+  echo "Download otikrd package"
+  git clone https://github.com/npintong/otikrd.git
+fi
+
+sleep 1
 
 echo 
 echo "==========================================================="
@@ -92,12 +101,11 @@ sleep 1
 
 echo 
 echo "====================================="
-echo "Allow run Asterisk user & group"
+echo "Install Web Management"
 echo "====================================="
 echo 
 
-cd /tmp/otikrd
-mv otikrd /var/www/html/
+mv /tmp/otikrd /var/www/html/
 
 sleep 1
 
