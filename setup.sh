@@ -110,6 +110,43 @@ mv /tmp/otikrd/otikrd /var/www/html/
 
 sleep 1
 
+cat > /etc/freeradius/3.0/clients.conf << EOF
+client localhost {
+	
+	ipaddr = 127.0.0.1
+
+	proto = *
+
+	secret = testing123
+
+	require_message_authenticator = no
+
+	nas_type	 = other
+
+	limit {
+		
+		max_connections = 16
+
+		lifetime = 0
+
+		idle_timeout = 30
+	}
+}
+
+client localhost_ipv6 {
+	ipv6addr	= ::1
+	secret		= testing123
+}
+
+client private-network-1 {
+	ipaddr		= 0.0.0.0/0
+	secret		= Otik@Secret
+}
+
+EOF
+
+sleep 1
+
 cat > /etc/freeradius/3.0/mods-enabled/sql << EOF
 
 ######################################################################

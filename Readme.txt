@@ -26,3 +26,7 @@ root@otikrad:/tmp# git clone https://github.com/npintong/otikrd.git
 root@otikrad:/tmp# cd otikrd/
 root@otikrad:/tmp/otikrd# chmod 777 setup.sh 
 root@otikrad:/tmp/otikrd# ./setup.sh 
+
+
+สำหรับการเชื่อมต่อกับ MikroTik ให้ใช้ คีย์ Secret key = Otik@Secret
+
