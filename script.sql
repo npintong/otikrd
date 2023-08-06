@@ -173,40 +173,38 @@ CREATE TABLE IF NOT EXISTS tbl_master_nas (
   PRIMARY KEY (id),
   KEY nasname (nasname)
 );
-
-
 CREATE TABLE IF NOT EXISTS tbl_trans_account (
-  'acID' int(20) NOT NULL AUTO_INCREMENT,
-  'pfID' int(20) NOT NULL,
-  'acUser' varchar(13) NOT NULL,
-  'acPassWd' varchar(13) NOT NULL,
-  'acStatus' int(1) NOT NULL,
-  'WhoCreate' varchar(50) NOT NULL,
-  'DateCreate' datetime DEFAULT NULL,
-  'WhoUpdate' varchar(50) DEFAULT NULL,
-  'DateUpdate' datetime DEFAULT NULL,
-  PRIMARY KEY ('acID')
+  acID int(20) NOT NULL AUTO_INCREMENT,
+  pfID int(20) NOT NULL,
+  acUser varchar(13) NOT NULL,
+  acPassWd varchar(13) NOT NULL,
+  acStatus int(1) NOT NULL,
+  WhoCreate varchar(50) NOT NULL,
+  DateCreate datetime DEFAULT NULL,
+  WhoUpdate varchar(50) DEFAULT NULL,
+  DateUpdate datetime DEFAULT NULL,
+  PRIMARY KEY (acID)
 ) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS tbl_master_administrator (
-  'uID' int(11) NOT NULL AUTO_INCREMENT,
-  'uUserName' varchar(100) NOT NULL,
-  'uPasswd' varchar(100) NOT NULL,
-  'uFullName' varchar(100) NOT NULL,
-  'uGrpID' int(10) DEFAULT NULL,
-  'uPersProfile' int(1) NOT NULL,
-  'uPersAccount' int(1) NOT NULL,
-  'uPersReports' int(1) NOT NULL,
-  'uPersOnline' int(1) NOT NULL,
-  'uStatus' int(1) NOT NULL,
-  'uCrtDate' datetime NOT NULL,
-  'uUpdDate' datetime NOT NULL,
-  'uDep' varchar(100) DEFAULT NULL,
-  'uPicture' varchar(100) DEFAULT NULL,
-  'uEmail' varchar(50) DEFAULT NULL,
-  'uAddress' varchar(255) DEFAULT NULL,
-  PRIMARY KEY ('uID')
+  uID int(11) NOT NULL AUTO_INCREMENT,
+  uUserName varchar(100) NOT NULL,
+  uPasswd varchar(100) NOT NULL,
+  uFullName varchar(100) NOT NULL,
+  uGrpID int(10) DEFAULT NULL,
+  uPersProfile int(1) NOT NULL,
+  uPersAccount int(1) NOT NULL,
+  uPersReports int(1) NOT NULL,
+  uPersOnline int(1) NOT NULL,
+  uStatus int(1) NOT NULL,
+  uCrtDate datetime NOT NULL,
+  uUpdDate datetime NOT NULL,
+  uDep varchar(100) DEFAULT NULL,
+  uPicture varchar(100) DEFAULT NULL,
+  uEmail varchar(50) DEFAULT NULL,
+  uAddress varchar(255) DEFAULT NULL,
+  PRIMARY KEY (uID)
 ) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
 LOCK TABLES tbl_master_administrator WRITE;
@@ -215,36 +213,36 @@ UNLOCK TABLES;
 
 
 CREATE TABLE IF NOT EXISTS tbl_master_cui (
-  'clientipaddress' varchar(15) NOT NULL DEFAULT '',
-  'callingstationid' varchar(50) NOT NULL DEFAULT '',
-  'username' varchar(64) NOT NULL DEFAULT '',
-  'cui' varchar(32) NOT NULL DEFAULT '',
-  'creationdate' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  'lastaccounting' timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY ('username','clientipaddress','callingstationid')
+  clientipaddress varchar(15) NOT NULL DEFAULT ,
+  callingstationid varchar(50) NOT NULL DEFAULT ,
+  username varchar(64) NOT NULL DEFAULT ,
+  cui varchar(32) NOT NULL DEFAULT ,
+  creationdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  lastaccounting timestamp NOT NULL DEFAULT 0000-00-00 00:00:00,
+  PRIMARY KEY (username,clientipaddress,callingstationid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS tbl_master_profiles (
-  'pfID' int(20) NOT NULL AUTO_INCREMENT,
-  'pfName' varchar(100) NOT NULL,
-  'pfSpeedLimitUp' varchar(20) DEFAULT NULL,
-  'pfSpeedLimitDown' varchar(20) DEFAULT NULL,
-  'pfAddressList' varchar(50) DEFAULT NULL,
-  'pfUrlRedirect' varchar(100) DEFAULT NULL,
-  'pfShareUsers' varchar(50) NOT NULL,
-  'pfSessionTimout' varchar(50) DEFAULT NULL,
-  'pfIdleTimeout' varchar(50) DEFAULT NULL,
-  'pfUptime' varchar(50) DEFAULT NULL,
-  'pfValidity' varchar(50) DEFAULT NULL,
-  'pfStatus' varchar(50) NOT NULL,
-  'WhoCreate' varchar(50) DEFAULT NULL,
-  'DateCreate' datetime DEFAULT NULL,
-  'WhoUpdate' varchar(50) DEFAULT NULL,
-  'DateUpdate' datetime DEFAULT NULL,
-  'pfPriority' int(1) NOT NULL,
-  'pfPrice' float DEFAULT NULL,
-  PRIMARY KEY ('pfID')
+  pfID int(20) NOT NULL AUTO_INCREMENT,
+  pfName varchar(100) NOT NULL,
+  pfSpeedLimitUp varchar(20) DEFAULT NULL,
+  pfSpeedLimitDown varchar(20) DEFAULT NULL,
+  pfAddressList varchar(50) DEFAULT NULL,
+  pfUrlRedirect varchar(100) DEFAULT NULL,
+  pfShareUsers varchar(50) NOT NULL,
+  pfSessionTimout varchar(50) DEFAULT NULL,
+  pfIdleTimeout varchar(50) DEFAULT NULL,
+  pfUptime varchar(50) DEFAULT NULL,
+  pfValidity varchar(50) DEFAULT NULL,
+  pfStatus varchar(50) NOT NULL,
+  WhoCreate varchar(50) DEFAULT NULL,
+  DateCreate datetime DEFAULT NULL,
+  WhoUpdate varchar(50) DEFAULT NULL,
+  DateUpdate datetime DEFAULT NULL,
+  pfPriority int(1) NOT NULL,
+  pfPrice float DEFAULT NULL,
+  PRIMARY KEY (pfID)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 LOCK TABLES tbl_master_profiles WRITE;
