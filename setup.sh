@@ -236,7 +236,6 @@ Welcome to otikrd | By OtikNetwork
 www.otiknetwork.com / 02-538-4378, 095-549-9819
 
 
-
 EOF
 
 
@@ -259,4 +258,6 @@ echo
 
 ip=$(ip addr|grep 'inet '|grep global|head -n1|awk '{print $2}'|cut -f1 -d/)
 
-echo "Your ip address = $ip"
+echo "System Information"
+echo "Web Access = http://$ip/otikrd"
+echo "User : sysadmin Password : sysadmin"
