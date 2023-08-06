@@ -70,7 +70,7 @@ echo "(Start) Mariadb Server"
 sudo systemctl start mysql
 sleep 1
 
-mysql -u root < script.sql
+mysql -u root < /tmp/otikrd/script.sql
 
 echo 
 echo "==========================================================="
