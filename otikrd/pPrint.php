@@ -60,7 +60,7 @@ if(isset($_SESSION['pdata'])){
 			echo "<table style=\"display: inline-block; width: 250px; border: 1px solid #ccc; line-height: 110%; font-family: arial; font-size: 12px; margin: 1px;\">\n"; 
 			echo "<tbody>\n"; 
 			echo "<tr>\n"; 
-			echo "<td style=\"text-align: center; color: red; font-size: 13px; border-bottom: 1px #ccc solid;\"><b>+BIG CO-WORKING+</b></td>\n"; 
+			echo "<td style=\"text-align: center; color: red; font-size: 13px; border-bottom: 1px #ccc solid;\"><b>+INTERNET CARD+</b></td>\n"; 
 			echo "</tr>\n"; 
 			echo "<tr>\n"; 
 			echo "<td>\n"; 
@@ -115,7 +115,7 @@ if(isset($_SESSION['pdata'])){
 			echo "</td>\n"; 
 			echo "</tr>\n"; 
 			echo "<tr>\n"; 
-			echo "<td style=\"text-align: center; font-size:11px;\">www.bigcoworking.space</td>\n"; 
+			echo "<td style=\"text-align: center; font-size:11px;\">www.otiknetwork.com</td>\n"; 
 			echo "</tr>\n"; 
 			echo "</tbody>\n"; 
 			echo "</table>\n";
