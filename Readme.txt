@@ -21,10 +21,8 @@ RAM : ขั้นต่ำ 512 MB
 
 
 การติดตั้ง
-otikrd# cd /tmp
-otikrd# git clone https://github.com/npintong/otikrd.git
-otikrd# chmod 777 setup.sh
-otikrd# ./setup.sh
-
-
-
+root@otikrad:/# cd /tmp
+root@otikrad:/tmp# git clone https://github.com/npintong/otikrd.git
+root@otikrad:/tmp# cd otikrd/
+root@otikrad:/tmp/otikrd# chmod 777 setup.sh 
+root@otikrad:/tmp/otikrd# ./setup.sh 
