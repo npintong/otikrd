@@ -50,7 +50,8 @@ sudo apt-get install apache2 php libapache2-mod-php php-mail php-mail-mime \
 php-mysql php-gd php-common php-pear php-db php-mbstring \
 php-xml php-curl unzip wget -y
 
-sudo systemctl enable --now apache2
+sudo systemctl enable apache2
+sleep 3
 
 echo 
 echo "==========================================================="
@@ -63,11 +64,11 @@ sudo apt install -y mariadb-server
 sleep 1
 
 echo "(Startup) Mariadb Server"
-sudo systemctl enable mysql
+sudo systemctl enable mariadb
 sleep 1
 
 echo "(Start) Mariadb Server"
-sudo systemctl start mysql
+
 sleep 1
 
 mysql -u root < /tmp/otikrd/script.sql
