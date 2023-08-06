@@ -83,9 +83,9 @@ if(!isset($_SESSION['condition'])){
 }
 */
 
-//echo  $_SESSION['condition'];
+echo  $_SESSION['condition'];
 
-//echo $_SESSION['mySession'];
+echo $_SESSION['mySession'];
 
 ?>
 
