@@ -175,7 +175,7 @@ CREATE TABLE IF NOT EXISTS tbl_master_nas (
 );
 
 
-CREATE TABLE IF NOT EXISTS 'tbl_trans_account' (
+CREATE TABLE IF NOT EXISTS tbl_trans_account (
   'acID' int(20) NOT NULL AUTO_INCREMENT,
   'pfID' int(20) NOT NULL,
   'acUser' varchar(13) NOT NULL,
@@ -189,7 +189,7 @@ CREATE TABLE IF NOT EXISTS 'tbl_trans_account' (
 ) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE IF NOT EXISTS 'tbl_master_administrator' (
+CREATE TABLE IF NOT EXISTS tbl_master_administrator (
   'uID' int(11) NOT NULL AUTO_INCREMENT,
   'uUserName' varchar(100) NOT NULL,
   'uPasswd' varchar(100) NOT NULL,
@@ -209,12 +209,12 @@ CREATE TABLE IF NOT EXISTS 'tbl_master_administrator' (
   PRIMARY KEY ('uID')
 ) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
 
-LOCK TABLES 'tbl_master_administrator' WRITE;
-INSERT INTO 'tbl_master_administrator' VALUES (1,'amnuay','ee10d403452291ec7d888b0c0d8b5a8d','อำนวย ปิ่นทอง',1,0,0,0,0,1,'2017-09-06 00:00:00','2017-11-05 16:18:32','IT',NULL,'amnuay@otiknetwork.com','Bangkok Thailand'),(44,'sysadmin','a2a7a4c693c482d56511e3544dc8ea26','SystemAdministrator',NULL,1,1,1,1,1,'2017-11-05 15:31:48','2017-11-05 15:49:42','AUTO','','sysadmin@gmail.com','');
+LOCK TABLES tbl_master_administrator WRITE;
+INSERT INTO tbl_master_administrator VALUES (1,'amnuay','ee10d403452291ec7d888b0c0d8b5a8d','อำนวย ปิ่นทอง',1,0,0,0,0,1,'2017-09-06 00:00:00','2017-11-05 16:18:32','IT',NULL,'amnuay@otiknetwork.com','Bangkok Thailand'),(44,'sysadmin','a2a7a4c693c482d56511e3544dc8ea26','SystemAdministrator',NULL,1,1,1,1,1,'2017-11-05 15:31:48','2017-11-05 15:49:42','AUTO','','sysadmin@gmail.com','');
 UNLOCK TABLES;
 
 
-CREATE TABLE IF NOT EXISTS 'tbl_master_cui' (
+CREATE TABLE IF NOT EXISTS tbl_master_cui (
   'clientipaddress' varchar(15) NOT NULL DEFAULT '',
   'callingstationid' varchar(50) NOT NULL DEFAULT '',
   'username' varchar(64) NOT NULL DEFAULT '',
@@ -225,7 +225,7 @@ CREATE TABLE IF NOT EXISTS 'tbl_master_cui' (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
-CREATE TABLE IF NOT EXISTS 'tbl_master_profiles' (
+CREATE TABLE IF NOT EXISTS tbl_master_profiles (
   'pfID' int(20) NOT NULL AUTO_INCREMENT,
   'pfName' varchar(100) NOT NULL,
   'pfSpeedLimitUp' varchar(20) DEFAULT NULL,
@@ -247,8 +247,8 @@ CREATE TABLE IF NOT EXISTS 'tbl_master_profiles' (
   PRIMARY KEY ('pfID')
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-LOCK TABLES 'tbl_master_profiles' WRITE;
-INSERT INTO 'tbl_master_profiles' VALUES (1,'public','4m','15m','public','https://www.otiknetwork.com','2','','900','28800','86400','1','npintong','2017-10-10 19:32:06','gorapin','2017-11-01 19:16:16',8,199),(2,'admin','','','admin','http://www.otiknetwork.com','2','','','','0','1','npintong','2017-11-01 17:31:03','gorapin','2017-11-01 19:17:14',8,0),(3,'room','30m','30m','room','http://www.otiknetwork.com','2','','','','0','1','npintong','2017-11-01 17:31:38','gorapin','2017-11-01 19:17:25',8,0),(4,'teaning','10m','15m','teaning','http://www.otiknetwork.com','2','','','','604800','1','npintong','2017-11-01 17:32:13','gorapin','2017-11-01 19:17:00',8,0);
+LOCK TABLES tbl_master_profiles WRITE;
+INSERT INTO tbl_master_profiles VALUES (1,'public','4m','15m','public','https://www.otiknetwork.com','2','','900','28800','86400','1','npintong','2017-10-10 19:32:06','gorapin','2017-11-01 19:16:16',8,199),(2,'admin','','','admin','http://www.otiknetwork.com','2','','','','0','1','npintong','2017-11-01 17:31:03','gorapin','2017-11-01 19:17:14',8,0),(3,'room','30m','30m','room','http://www.otiknetwork.com','2','','','','0','1','npintong','2017-11-01 17:31:38','gorapin','2017-11-01 19:17:25',8,0),(4,'teaning','10m','15m','teaning','http://www.otiknetwork.com','2','','','','604800','1','npintong','2017-11-01 17:32:13','gorapin','2017-11-01 19:17:00',8,0);
 UNLOCK TABLES;
 
 
