@@ -11,7 +11,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'otikuser'@localhost IDENTIFIED BY 'Love@OtikNetW
 DELETE FROM mysql.user WHERE User=''; 
 DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
 DROP DATABASE IF EXISTS test;
-DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'
+DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
 
 # Set new password for user "root"
 UPDATE mysql.user SET authentication_string = PASSWORD('Love@OtikNetWork') WHERE User = 'root' AND Host = 'localhost';
