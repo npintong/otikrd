@@ -2,17 +2,34 @@
 # Script by OtikNetwork                     
 ###########################################################################
 
-GRANT ALL ON otikdb.* TO otikuser@localhost IDENTIFIED BY "Love@OtikNetWork";
-
-create database otikdb character set utf8;
-
-use otikdb;
-
-#
-# Table structure for table 'radacct'
 #
 
-CREATE TABLE IF NOT EXISTS radacct (
+# Create new user otikadmin and set password
+GRANT ALL PRIVILEGES ON *.* TO 'otikuser'@localhost IDENTIFIED BY 'Love@OtikNetWork';
+
+# Remove empty user and root remote login
+DELETE FROM mysql.user WHERE User=''; 
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+DROP DATABASE IF EXISTS test;
+DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%'
+
+# Set new password for user "root"
+UPDATE mysql.user SET authentication_string = PASSWORD('Love@OtikNetWork') WHERE User = 'root' AND Host = 'localhost';
+
+# reload permission
+FLUSH PRIVILEGES;
+
+# Create new database name "otikdb" with support utf8 (Thai Language)
+CREATE DATABASE otikdb character set utf8;
+
+
+USE otikdb;
+
+#
+# Table structure for table 'tbl_master_radacct'
+#
+
+CREATE TABLE IF NOT EXISTS tbl_master_radacct (
   radacctid bigint(21) NOT NULL auto_increment,
   acctsessionid varchar(64) NOT NULL default '',
   acctuniqueid varchar(32) NOT NULL default '',
@@ -58,10 +75,10 @@ CREATE TABLE IF NOT EXISTS radacct (
 ) ENGINE = INNODB;
 
 #
-# Table structure for table 'radcheck'
+# Table structure for table 'tbl_master_radcheck'
 #
 
-CREATE TABLE IF NOT EXISTS radcheck (
+CREATE TABLE IF NOT EXISTS tbl_master_radcheck (
   id int(11) unsigned NOT NULL auto_increment,
   username varchar(64) NOT NULL default '',
   attribute varchar(64)  NOT NULL default '',
@@ -72,10 +89,10 @@ CREATE TABLE IF NOT EXISTS radcheck (
 );
 
 #
-# Table structure for table 'radgroupcheck'
+# Table structure for table 'tbl_master_radgroupcheck'
 #
 
-CREATE TABLE IF NOT EXISTS radgroupcheck (
+CREATE TABLE IF NOT EXISTS tbl_master_radgroupcheck (
   id int(11) unsigned NOT NULL auto_increment,
   groupname varchar(64) NOT NULL default '',
   attribute varchar(64)  NOT NULL default '',
@@ -86,10 +103,10 @@ CREATE TABLE IF NOT EXISTS radgroupcheck (
 );
 
 #
-# Table structure for table 'radgroupreply'
+# Table structure for table 'tbl_master_radgroupreply'
 #
 
-CREATE TABLE IF NOT EXISTS radgroupreply (
+CREATE TABLE IF NOT EXISTS tbl_master_radgroupreply (
   id int(11) unsigned NOT NULL auto_increment,
   groupname varchar(64) NOT NULL default '',
   attribute varchar(64)  NOT NULL default '',
@@ -100,10 +117,10 @@ CREATE TABLE IF NOT EXISTS radgroupreply (
 );
 
 #
-# Table structure for table 'radreply'
+# Table structure for table 'tbl_master_radreply'
 #
 
-CREATE TABLE IF NOT EXISTS radreply (
+CREATE TABLE IF NOT EXISTS tbl_master_radreply (
   id int(11) unsigned NOT NULL auto_increment,
   username varchar(64) NOT NULL default '',
   attribute varchar(64) NOT NULL default '',
@@ -115,10 +132,10 @@ CREATE TABLE IF NOT EXISTS radreply (
 
 
 #
-# Table structure for table 'radusergroup'
+# Table structure for table 'tbl_master_radusergroup'
 #
 
-CREATE TABLE IF NOT EXISTS radusergroup (
+CREATE TABLE IF NOT EXISTS tbl_master_radusergroup (
   id int(11) unsigned NOT NULL auto_increment,
   username varchar(64) NOT NULL default '',
   groupname varchar(64) NOT NULL default '',
@@ -128,9 +145,9 @@ CREATE TABLE IF NOT EXISTS radusergroup (
 );
 
 #
-# Table structure for table 'radpostauth'
+# Table structure for table 'tbl_master_radpostauth'
 #
-CREATE TABLE IF NOT EXISTS radpostauth (
+CREATE TABLE IF NOT EXISTS tbl_master_radpostauth (
   id int(11) NOT NULL auto_increment,
   username varchar(64) NOT NULL default '',
   pass varchar(64) NOT NULL default '',
@@ -141,9 +158,9 @@ CREATE TABLE IF NOT EXISTS radpostauth (
 ) ENGINE = INNODB;
 
 #
-# Table structure for table 'nas'
+# Table structure for table 'tbl_master_nas'
 #
-CREATE TABLE IF NOT EXISTS nas (
+CREATE TABLE IF NOT EXISTS tbl_master_nas (
   id int(10) NOT NULL auto_increment,
   nasname varchar(128) NOT NULL,
   shortname varchar(32),
@@ -156,6 +173,88 @@ CREATE TABLE IF NOT EXISTS nas (
   PRIMARY KEY (id),
   KEY nasname (nasname)
 );
+
+
+DROP TABLE IF EXISTS 'tbl_trans_account';
+CREATE TABLE 'tbl_trans_account' (
+  'acID' int(20) NOT NULL AUTO_INCREMENT,
+  'pfID' int(20) NOT NULL,
+  'acUser' varchar(13) NOT NULL,
+  'acPassWd' varchar(13) NOT NULL,
+  'acStatus' int(1) NOT NULL,
+  'WhoCreate' varchar(50) NOT NULL,
+  'DateCreate' datetime DEFAULT NULL,
+  'WhoUpdate' varchar(50) DEFAULT NULL,
+  'DateUpdate' datetime DEFAULT NULL,
+  PRIMARY KEY ('acID')
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
+
+
+DROP TABLE IF EXISTS 'tbl_master_administrator';
+CREATE TABLE 'tbl_master_administrator' (
+  'uID' int(11) NOT NULL AUTO_INCREMENT,
+  'uUserName' varchar(100) NOT NULL,
+  'uPasswd' varchar(100) NOT NULL,
+  'uFullName' varchar(100) NOT NULL,
+  'uGrpID' int(10) DEFAULT NULL,
+  'uPersProfile' int(1) NOT NULL,
+  'uPersAccount' int(1) NOT NULL,
+  'uPersReports' int(1) NOT NULL,
+  'uPersOnline' int(1) NOT NULL,
+  'uStatus' int(1) NOT NULL,
+  'uCrtDate' datetime NOT NULL,
+  'uUpdDate' datetime NOT NULL,
+  'uDep' varchar(100) DEFAULT NULL,
+  'uPicture' varchar(100) DEFAULT NULL,
+  'uEmail' varchar(50) DEFAULT NULL,
+  'uAddress' varchar(255) DEFAULT NULL,
+  PRIMARY KEY ('uID')
+) ENGINE=MyISAM AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+
+LOCK TABLES 'tbl_master_administrator' WRITE;
+INSERT INTO 'tbl_master_administrator' VALUES (1,'amnuay','ee10d403452291ec7d888b0c0d8b5a8d','อำนวย ปิ่นทอง',1,0,0,0,0,1,'2017-09-06 00:00:00','2017-11-05 16:18:32','IT',NULL,'amnuay@otiknetwork.com','Bangkok Thailand'),(44,'sysadmin','a2a7a4c693c482d56511e3544dc8ea26','SystemAdministrator',NULL,1,1,1,1,1,'2017-11-05 15:31:48','2017-11-05 15:49:42','AUTO','','sysadmin@gmail.com','');
+UNLOCK TABLES;
+
+
+DROP TABLE IF EXISTS 'tbl_master_cui';
+CREATE TABLE 'tbl_master_cui' (
+  'clientipaddress' varchar(15) NOT NULL DEFAULT '',
+  'callingstationid' varchar(50) NOT NULL DEFAULT '',
+  'username' varchar(64) NOT NULL DEFAULT '',
+  'cui' varchar(32) NOT NULL DEFAULT '',
+  'creationdate' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  'lastaccounting' timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY ('username','clientipaddress','callingstationid')
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS 'tbl_master_profiles';
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE 'tbl_master_profiles' (
+  'pfID' int(20) NOT NULL AUTO_INCREMENT,
+  'pfName' varchar(100) NOT NULL,
+  'pfSpeedLimitUp' varchar(20) DEFAULT NULL,
+  'pfSpeedLimitDown' varchar(20) DEFAULT NULL,
+  'pfAddressList' varchar(50) DEFAULT NULL,
+  'pfUrlRedirect' varchar(100) DEFAULT NULL,
+  'pfShareUsers' varchar(50) NOT NULL,
+  'pfSessionTimout' varchar(50) DEFAULT NULL,
+  'pfIdleTimeout' varchar(50) DEFAULT NULL,
+  'pfUptime' varchar(50) DEFAULT NULL,
+  'pfValidity' varchar(50) DEFAULT NULL,
+  'pfStatus' varchar(50) NOT NULL,
+  'WhoCreate' varchar(50) DEFAULT NULL,
+  'DateCreate' datetime DEFAULT NULL,
+  'WhoUpdate' varchar(50) DEFAULT NULL,
+  'DateUpdate' datetime DEFAULT NULL,
+  'pfPriority' int(1) NOT NULL,
+  'pfPrice' float DEFAULT NULL,
+  PRIMARY KEY ('pfID')
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+LOCK TABLES 'tbl_master_profiles' WRITE;
+INSERT INTO 'tbl_master_profiles' VALUES (1,'public','4m','15m','public','https://www.otiknetwork.com','2','','900','28800','86400','1','npintong','2017-10-10 19:32:06','gorapin','2017-11-01 19:16:16',8,199),(2,'admin','','','admin','http://www.otiknetwork.com','2','','','','0','1','npintong','2017-11-01 17:31:03','gorapin','2017-11-01 19:17:14',8,0),(3,'room','30m','30m','room','http://www.otiknetwork.com','2','','','','0','1','npintong','2017-11-01 17:31:38','gorapin','2017-11-01 19:17:25',8,0),(4,'teaning','10m','15m','teaning','http://www.otiknetwork.com','2','','','','604800','1','npintong','2017-11-01 17:32:13','gorapin','2017-11-01 19:17:00',8,0);
+UNLOCK TABLES;
 
 
 

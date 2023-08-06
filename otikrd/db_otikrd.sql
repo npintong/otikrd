@@ -49,7 +49,7 @@ CREATE TABLE `tbl_master_administrator` (
 
 LOCK TABLES `tbl_master_administrator` WRITE;
 /*!40000 ALTER TABLE `tbl_master_administrator` DISABLE KEYS */;
-INSERT INTO `tbl_master_administrator` VALUES (1,'amnuay','ee10d403452291ec7d888b0c0d8b5a8d','อำนวย ปิ่นทอง',1,0,0,0,0,1,'2017-09-06 00:00:00','2017-11-05 16:18:32','IT',NULL,'amnuay@otiknetwork.com','Bangkok Thailand'),(44,'sysadmin','a2a7a4c693c482d56511e3544dc8ea26','SystemAdministrator',NULL,1,1,1,1,1,'2017-11-05 15:31:48','2017-11-05 15:49:42','AUTO','','sysadmin@gmail.com',''),(40,'seelawut','c4ca4238a0b923820dcc509a6f75849b','Seelawut',NULL,1,1,1,1,1,'2017-11-01 17:48:31','2017-11-01 17:48:31','AUTO','','seelawut@gmail.com',NULL),(41,'hipc','d7ee1d730d8e86d1bd63fd40dd141d68','hipc',NULL,1,1,1,1,1,'2017-11-01 17:51:54','2017-11-01 17:51:54','AUTO','','hipcsnl@gmail.com',NULL),(42,'bigadmin','6b56589074722e07dc4fdfa62b4c34a7','Bigadmin',NULL,1,1,1,1,1,'2017-11-01 19:19:34','2017-11-01 19:19:34','AUTO','','amnuay@otiknetwork.com',NULL);
+INSERT INTO `tbl_master_administrator` VALUES (1,'amnuay','ee10d403452291ec7d888b0c0d8b5a8d','อำนวย ปิ่นทอง',1,0,0,0,0,1,'2017-09-06 00:00:00','2017-11-05 16:18:32','IT',NULL,'amnuay@otiknetwork.com','Bangkok Thailand'),(44,'sysadmin','a2a7a4c693c482d56511e3544dc8ea26','SystemAdministrator',NULL,1,1,1,1,1,'2017-11-05 15:31:48','2017-11-05 15:49:42','AUTO','','sysadmin@gmail.com','');
 /*!40000 ALTER TABLE `tbl_master_administrator` ENABLE KEYS */;
 UNLOCK TABLES;
 
