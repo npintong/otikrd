@@ -68,6 +68,7 @@ sudo systemctl enable mariadb
 sleep 1
 
 echo "(Start) Mariadb Server"
+sudo systemctl start mariadb
 
 sleep 1
 
@@ -85,20 +86,25 @@ echo "====================================="
 echo "Create soft link modules"
 echo "====================================="
 echo 
-sudo ln -s /etc/freeradius/3.0/mods-available/sql /etc/freeradius/3.0/mods-enabled/
+
+cd /etc/freeradius/3.0/mods-enabled/
+
+sudo ln -s ../mods-available/sql ../mods-enabled/
 sleep 1
-sudo chgrp -h freerad /etc/freeradius/3.0/mods-available/sql
+sudo chgrp -h freerad ../mods-available/sql
 sleep 1
-sudo chown -R freerad:freerad /etc/freeradius/3.0/mods-enabled/sql
+sudo chown -R freerad:freerad ../mods-enabled/sql
 sleep 1
 
 echo "Enable SqlCounter"
-sudo ln -s /etc/freeradius/3.0/mods-available/sqlcounter /etc/freeradius/3.0/mods-enabled/
+
+sudo ln -s ../mods-available/sqlcounter ../mods-enabled/
 sleep 1
-sudo chgrp -h freerad /etc/freeradius/3.0/mods-available/sqlcounter
+sudo chgrp -h freerad ../mods-available/sqlcounter
 sleep 1
-sudo chown -R freerad:freerad /etc/freeradius/3.0/mods-enabled/sqlcounter
+sudo chown -R freerad:freerad ../mods-enabled/sqlcounter
 sleep 1
+
 
 echo 
 echo "====================================="
@@ -138,7 +144,7 @@ client localhost_ipv6 {
 	secret		= testing123
 }
 
-client private-network-1 {
+client private-network {
 	ipaddr		= 0.0.0.0/0
 	secret		= Otik@Secret
 }
@@ -244,10 +250,96 @@ EOF
 
 sleep 1
 
+cat > /etc/freeradius/3.0/radiusd.conf << EOF
+
+prefix = /usr
+exec_prefix = /usr
+sysconfdir = /etc
+localstatedir = /var
+sbindir = \${exec_prefix}/sbin
+logdir = /var/log/freeradius
+raddbdir = /etc/freeradius/3.0
+radacctdir = \${logdir}/radacct
+
+name = freeradius
+confdir = \${raddbdir}
+modconfdir = \${confdir}/mods-config
+certdir = \${confdir}/certs
+cadir   = \${confdir}/certs
+run_dir = \${localstatedir}/run/\${name}
+db_dir = \${raddbdir}
+libdir = /usr/lib/freeradius
+pidfile = \${run_dir}/\${name}.pid
+correct_escapes = true
+max_request_time = 30
+cleanup_delay = 5
+max_requests = 16384
+hostname_lookups = no
+
+log {
+	destination = files
+	colourise = yes
+	file = \${logdir}/radius.log
+	syslog_facility = daemon
+	stripped_names = no
+	auth = no
+	auth_badpass = no
+	auth_goodpass = no
+	msg_denied = "You are already logged in - access denied"
+}
+
+checkrad = \${sbindir}/checkrad
+
+ENV {
+	
+}
+
+security {
+	user = freerad
+	group = freerad
+	allow_core_dumps = no
+	max_attributes = 200
+	reject_delay = 1
+	status_server = yes
+}
+
+proxy_requests  = yes
+\$INCLUDE proxy.conf
+
+\$INCLUDE clients.conf
+
+thread pool {
+	
+	start_servers = 5
+	max_servers = 32
+	min_spare_servers = 3
+	max_spare_servers = 10
+	max_requests_per_server = 0
+	auto_limit_acct = no
+}
+
+modules {	
+	\$INCLUDE mods-enabled/sql	
+	\$INCLUDE mods-enabled/
+}
+
+instantiate {	
+#	daily
+
+}
+
+policy {
+	\$INCLUDE policy.d/
+}
+
+\$INCLUDE sites-enabled/
+
+
+EOF
 
 echo 
 echo "====================================="
-echo "Allow firewall 1812 and 80"
+echo "Allow firewall 1812 , 1813 and 80"
 echo "====================================="
 echo 
 

@@ -454,6 +454,7 @@ CREATE TABLE `tbl_trans_account` (
   `pfID` int(20) NOT NULL,
   `acUser` varchar(13) NOT NULL,
   `acPassWd` varchar(13) NOT NULL,
+  
   `acStatus` int(1) NOT NULL,
   `WhoCreate` varchar(50) NOT NULL,
   `DateCreate` datetime DEFAULT NULL,
