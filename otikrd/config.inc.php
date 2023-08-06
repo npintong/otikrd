@@ -1,9 +1,9 @@
 <?php
 
 $db_host = "192.168.98.21";
-$db_user = "root";
-$db_password = "1Qazxsw2!!";
-$db_dbname = "otikrd";
+$db_user = "otikuser";
+$db_password = "Love@OtikNetWork";
+$db_dbname = "otikdb";
 
 $mcon = new mysqli($db_host,$db_user,$db_password,$db_dbname);
 mysqli_set_charset($mcon,"utf8");
