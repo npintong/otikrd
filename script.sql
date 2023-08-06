@@ -213,13 +213,13 @@ UNLOCK TABLES;
 
 
 CREATE TABLE IF NOT EXISTS tbl_master_cui (
-  clientipaddress varchar(15) NOT NULL DEFAULT ,
-  callingstationid varchar(50) NOT NULL DEFAULT ,
-  username varchar(64) NOT NULL DEFAULT ,
-  cui varchar(32) NOT NULL DEFAULT ,
+  clientipaddress varchar(15) NOT NULL,
+  callingstationid varchar(50) NOT NULL,
+  username varchar(64) NOT NULL,
+  cui varchar(32) NOT NULL,
   creationdate timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  lastaccounting timestamp NOT NULL DEFAULT 0000-00-00 00:00:00,
-  PRIMARY KEY (username,clientipaddress,callingstationid)
+  lastaccounting timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (username, clientipaddress, callingstationid)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 
