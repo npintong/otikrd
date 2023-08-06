@@ -220,8 +220,8 @@ if ($rs->num_rows > 0) {
 		echo "                          <td align=\"center\">\n";
 		echo "                            ".$row['framedipaddress']."\n";
 		echo "                          </td>\n";
-		echo "                          <td align=\"center\">\n";
-		echo "                            <label style=\"color:green;\"><img src=\"img/online.gif\"></label>\n";
+		echo "                          <td align=\"center\" style=\"background-color:white;\">\n";
+		echo "                            <label style=\"color:green;\"><img src=\"img/online.gif\" style=\"width:31px;\"></label>\n";
 		echo "                          </td>\n";        
 		//echo "                          <td class=\"hidden-xs\" style=\"text-align: center;\">\n";
 		//echo "							<button onclick=\"AccountDelete('".$row['username']."')\" class=\"btn btn-danger btn-sm\"><span class=\"glyphicon glyphicon-log-out\"></span></button>";		
