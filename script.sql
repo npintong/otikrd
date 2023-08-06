@@ -175,8 +175,7 @@ CREATE TABLE IF NOT EXISTS tbl_master_nas (
 );
 
 
-DROP TABLE IF EXISTS 'tbl_trans_account';
-CREATE TABLE 'tbl_trans_account' (
+CREATE TABLE IF NOT EXISTS 'tbl_trans_account' (
   'acID' int(20) NOT NULL AUTO_INCREMENT,
   'pfID' int(20) NOT NULL,
   'acUser' varchar(13) NOT NULL,
@@ -190,8 +189,7 @@ CREATE TABLE 'tbl_trans_account' (
 ) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
 
 
-DROP TABLE IF EXISTS 'tbl_master_administrator';
-CREATE TABLE 'tbl_master_administrator' (
+CREATE TABLE IF NOT EXISTS 'tbl_master_administrator' (
   'uID' int(11) NOT NULL AUTO_INCREMENT,
   'uUserName' varchar(100) NOT NULL,
   'uPasswd' varchar(100) NOT NULL,
@@ -216,8 +214,7 @@ INSERT INTO 'tbl_master_administrator' VALUES (1,'amnuay','ee10d403452291ec7d888
 UNLOCK TABLES;
 
 
-DROP TABLE IF EXISTS 'tbl_master_cui';
-CREATE TABLE 'tbl_master_cui' (
+CREATE TABLE IF NOT EXISTS 'tbl_master_cui' (
   'clientipaddress' varchar(15) NOT NULL DEFAULT '',
   'callingstationid' varchar(50) NOT NULL DEFAULT '',
   'username' varchar(64) NOT NULL DEFAULT '',
@@ -227,10 +224,8 @@ CREATE TABLE 'tbl_master_cui' (
   PRIMARY KEY ('username','clientipaddress','callingstationid')
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS 'tbl_master_profiles';
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE 'tbl_master_profiles' (
+
+CREATE TABLE IF NOT EXISTS 'tbl_master_profiles' (
   'pfID' int(20) NOT NULL AUTO_INCREMENT,
   'pfName' varchar(100) NOT NULL,
   'pfSpeedLimitUp' varchar(20) DEFAULT NULL,
