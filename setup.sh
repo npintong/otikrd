@@ -12,7 +12,7 @@ DIR="/tmp/otikrd/"
 if [ -d "$DIR" ]; then  
   rm -rf /tmp/otikrd
   echo "Download otikrd package"
-  git clone https://github.com/npintong/otikrd.git
+  #git clone https://github.com/npintong/otikrd.git
 fi
 
 sleep 1
