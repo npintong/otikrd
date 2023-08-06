@@ -99,67 +99,6 @@ echo
 cd /tmp/otikrd
 mv otikrd /var/www/html/
 
-
-
-sed -i 's/dialect = "sqlite"/dialect = "mysql"/' /etc/freeradius/3.0/mods-enabled/sql
-driver = "rlm_sql_null"
-sed -i 's/driver = "rlm_sql_null"/#driver = "rlm_sql_null"/' /etc/freeradius/3.0/mods-enabled/sql
-sed -i 's/#AST_GROUP="asterisk"/AST_GROUP="asterisk"/' /etc/default/asterisk
-
-sleep 3
-
-sed -i 's/;runuser = asterisk/runuser = asterisk/' /etc/asterisk/asterisk.conf
-sed -i 's/;rungroup = asterisk/rungroup = asterisk/' /etc/asterisk/asterisk.conf
-
-sleep 3
-sed -i 's/autoload = no/autoload = yes/' /etc/asterisk/modules.conf
-
-
-sleep 2
-
-echo 
-echo "====================================="
-echo "Prepare Default configuration"
-echo "====================================="
-echo 
-
-
-echo "" > /etc/asterisk/pjsip.conf
-
-sleep 1
-
-echo "Create sip files"
-
-touch /etc/asterisk/pjsip_acl.conf
-touch /etc/asterisk/pjsip_aor.conf
-touch /etc/asterisk/pjsip_astpub.conf
-touch /etc/asterisk/pjsip_auth.conf
-touch /etc/asterisk/pjsip_endpoint.conf
-touch /etc/asterisk/pjsip_identify.conf
-touch /etc/asterisk/pjsip_inpub.conf
-touch /etc/asterisk/pjsip_notify.conf
-touch /etc/asterisk/pjsip_outpub.conf
-touch /etc/asterisk/pjsip_outreg.conf
-touch /etc/asterisk/pjsip_phoneprov.conf
-touch /etc/asterisk/pjsip_wizard.conf
-
-
-
-echo "Change owner files"
-
-chown -R asterisk:asterisk /etc/asterisk/pjsip_acl.conf
-chown -R asterisk:asterisk /etc/asterisk/pjsip_aor.conf
-chown -R asterisk:asterisk /etc/asterisk/pjsip_astpub.conf
-chown -R asterisk:asterisk /etc/asterisk/pjsip_auth.conf
-chown -R asterisk:asterisk /etc/asterisk/pjsip_endpoint.conf
-chown -R asterisk:asterisk /etc/asterisk/pjsip_identify.conf
-chown -R asterisk:asterisk /etc/asterisk/pjsip_inpub.conf
-chown -R asterisk:asterisk /etc/asterisk/pjsip_notify.conf
-chown -R asterisk:asterisk /etc/asterisk/pjsip_outpub.conf
-chown -R asterisk:asterisk /etc/asterisk/pjsip_outreg.conf
-chown -R asterisk:asterisk /etc/asterisk/pjsip_phoneprov.conf
-chown -R asterisk:asterisk /etc/asterisk/pjsip_wizard.conf
-
 sleep 1
 
 cat > /etc/freeradius/3.0/mods-enabled/sql << EOF
@@ -262,54 +201,7 @@ sleep 1
 
 echo 
 echo "====================================="
-echo "Move old file"
-echo "====================================="
-echo 
-
-mkdir /etc/asterisk/old_file
-mv /etc/asterisk/*.old /etc/asterisk/old_file
-
-
-sleep 1
-echo 
-echo "====================================="
-echo "Create CDR File"
-echo "====================================="
-echo 
-
-cat > /etc/asterisk/cdr.conf << EOF
-[general]
-enable=yes
-
-[radius]
-usegmtime=yes ; log date/time in GMT
-loguniqueid=yes ; log uniqueid
-loguserfield=yes ; log user field
-radiuscfg => /etc/radcli/radiusclient.conf
-
-
-[custom]
-; We log the unique ID as it can be useful for troubleshooting any issues
-; that arise.
-loguniqueid=yes
-EOF
-
-sleep 1
-
-echo 
-echo "====================================="
-echo "Create startup and restart asterisk"
-echo "====================================="
-echo 
-
-sudo systemctl restart asterisk
-sleep 3
-sudo systemctl enable asterisk
-sleep 3
-
-echo 
-echo "====================================="
-echo "Allow firewall 5060 and 5061"
+echo "Allow firewall 1812 and 80"
 echo "====================================="
 echo 
 
