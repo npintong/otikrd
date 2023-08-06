@@ -8,7 +8,7 @@ OTIKRD (Radius External)
 OS : Ubuntu 20.04 server และต้องใช้สิทธิ์เป็น root
 CPU : 1.4 GHz 64-bit CPU minimum
 RAM : ขั้นต่ำ 512 MB
-็Storage : ขั้นต่ำ 50Gb
+Storage : ขั้นต่ำ 50Gb
 
 ******************************************
 ฟีเจอร์ที่รองรับ / Features
@@ -30,3 +30,5 @@ root@otikrad:/tmp/otikrd# ./setup.sh
 
 สำหรับการเชื่อมต่อกับ MikroTik ให้ใช้ คีย์ Secret key = Otik@Secret
 
+คลิปสอนการติดตั้งและใช้งานดูได้ที่
+https://youtu.be/1cM31V_QtYs
