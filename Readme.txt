@@ -5,9 +5,8 @@ OTIKRD (Radius External)
 ******************************************
 ความต้องการของระบบ / Requirement
 ******************************************
-ระบบปฏิบัติการ : Ubuntu Server 20.04
-FreeRADIUS version : 3.0
-MySQL Server version : 5
-PHP Language version : 7.4
-TimeZone : Asia/Bangkok
+OS : Ubuntu 20.04 server และต้องใช้สิทธิ์เป็น root
+CPU : 1.4 GHz 64-bit CPU minimum
+RAM : ขั้นต่ำ 512 MB
+็Storage : ขั้นต่ำ 50Gb
 
