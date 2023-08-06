@@ -34,27 +34,34 @@ sudo apt -y upgrade
 
 echo 
 echo "==========================================================="
-echo "Install Build Dependencies"
+echo "Install Apache Web Server"
 echo "==========================================================="
 echo 
-sudo apt update
-sudo apt install -y apache2
-sudo apt install -y php php-gd php-mysqli php-pdo
+sudo apt-get install apache2 php libapache2-mod-php php-mail php-mail-mime \
+php-mysql php-gd php-common php-pear php-db php-mbstring \
+php-xml php-curl unzip wget -y
+
+sudo systemctl enable --now apache2
 
 echo 
 echo "==========================================================="
-echo "Download Asterisk 18 tarball"
+echo "Install Mariadb Server"
 echo "==========================================================="
 echo 
 
-sudo apt policy asterisk
-cd ~
-wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-18-current.tar.gz
+echo "installing..."
+sudo apt install mariadb-server
+sleep 1
 
-tar xvf asterisk-18-current.tar.gz
+echo "(Startup) Mariadb Server"
+sudo systemctl enable mysql
 
-cd asterisk-18*/
-contrib/scripts/get_mp3_source.sh
+sleep 1
+
+echo "(Start) Mariadb Server"
+sudo systemctl start mysql
+
+
 
 echo 
 echo "==========================================================="
