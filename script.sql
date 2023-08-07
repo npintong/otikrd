@@ -246,9 +246,5 @@ CREATE TABLE IF NOT EXISTS tbl_master_profiles (
   PRIMARY KEY (pfID)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-LOCK TABLES tbl_master_profiles WRITE;
-INSERT INTO tbl_master_profiles VALUES (1,'Internet','4m','15m','public','https://www.otiknetwork.com','2','','900','28800','86400','1','npintong','2017-10-10 19:32:06','gorapin','2017-11-01 19:16:16',8,199);
-UNLOCK TABLES;
-
 
 
