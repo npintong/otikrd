@@ -106,6 +106,14 @@ sudo chown -R freerad:freerad ../mods-enabled/sqlcounter
 sleep 1
 
 
+sudo ln -s ../mods-available/linenotify ../mods-enabled/
+sleep 1
+sudo chgrp -h freerad ../mods-available/linenotify
+sleep 1
+sudo chown -R freerad:freerad ../mods-enabled/linenotify
+sleep 1
+
+
 echo 
 echo "====================================="
 echo "Install Web Management"
@@ -113,6 +121,8 @@ echo "====================================="
 echo 
 
 mv /tmp/otikrd/otikrd /var/www/html/
+sleep 1
+mv /tmp/otikrd/linenotify /usr/sbin/
 
 sleep 1
 

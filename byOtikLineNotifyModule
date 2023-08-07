@@ -1,0 +1,6 @@
+
+exec linenotify-when-authen-pass {
+     wait = no
+     program = "/usr/bin/php /usr/sbin/linenotify %{User-Name}"
+     input_pairs = request
+}
