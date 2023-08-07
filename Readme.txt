@@ -51,5 +51,8 @@ root@otikrad:/tmp/otikrd# ./setup.sh
 
 
 
-คลิปสอนการติดตั้งและใช้งานดูได้ที่
+คลิปสอนการติดตั้งบน Ubuntu และการใช้งานเบื้องต้น
 https://youtu.be/1cM31V_QtYs
+
+คลิปสอนการตั้งค่าบนไมโครติก
+https://www.youtube.com/watch?v=w54ED-56G6Q
