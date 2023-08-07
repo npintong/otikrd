@@ -1,6 +1,6 @@
 
-exec linenotify-when-authen-pass {
+exec line-notify-authen-pass {
      wait = no
-     program = "/usr/bin/php /usr/sbin/linenotify %{User-Name}"
+     program = "/usr/bin/php /usr/sbin/linenotify %{User-Name} %{Calling-Station-Id} %{Called-Station-Id} %{Event-Timestamp} ${NAS-Identifier}"
      input_pairs = request
 }

@@ -1,39 +1,38 @@
-#!/usr/bin/env /bin/php
+
 <?php
 
-    // Location '/usr/sbin/'
-    // Database Connection
-    require_once('/var/www/html/otikrd/config.inc.php');   
+    $db_host = "127.0.0.1";
+    $db_user = "otikuser";
+    $db_password = "Love@OtikNetWork";
+    $db_dbname = "otikdb";
+
+    $mcon = new mysqli($db_host,$db_user,$db_password,$db_dbname);
+    mysqli_set_charset($mcon,"utf8");
+
+    if(mysqli_connect_error()){
+        echo "Error: could not connect to database.";
+        exit();
+    }
 
     // Query option
-    $tSQL = "SELECT * FROM tbl_master_setting WHERE id='1' LIMIT 1;";
+    $tSQL = "SELECT sOption1 FROM tbl_master_setting WHERE id='1' LIMIT 1;";
     $rs = $mcon->query($tSQL)->fetch_assoc();
 
-    $sOption1 = $rs['sOption1']; // Token
-    $sOption2 = $rs['sOption2']; // message 1
-    $sOption3 = $rs['sOption3']; // parameter 1
-    $sOption4 = $rs['sOption4']; // message 2
-    $sOption5 = $rs['sOption5']; // parameter 2
-    $sOption6 = $rs['sOption6']; // message 3
-    $sOption7 = $rs['sOption7']; // parameter 3
-    $iOption1 = $rs['iOption1']; // On and Off
-    $iOption2 = $rs['iOption2'];
-    $iOption2 = $rs['iOption2'];
+    $sToken = $rs['sOption1'];
+    $sMessage = $rs['sOption1'];
 
-    // Chek off function 
-    if($iOption1 == 0){
-        exit();
-    }
+    echo $sToken;
 
     // Check if empty token
-    if(empty($sOption1)){
+    if(empty($sToken)){
         exit();
     }
 
-    // Function Notify
+    exit();
+
     function sendLineNotify($message = "Notify-Option")
     {
-        $token = $sOption1;
+        $token = $sToken;
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
@@ -56,11 +55,9 @@
         curl_close($ch);
     }
 
-    
     if (isset($argv[1])) {
-        $msg = "User Logined : " . $argv[1]. " | " .$argv[2]. " | " .$argv[3]. " | " . $argv[4]. " | " .$argv[5] ;
+        $msg = "User Login : " . $argv[1];
         sendLineNotify($msg);
     }
 
 ?>
-
