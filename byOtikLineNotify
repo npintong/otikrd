@@ -31,9 +31,8 @@
     }
 
     // Function Notify
-    function sendLineNotify($message = "Notify-Option")
+    function sendLineNotify($message = "Notify-Option",$token='')
     {
-        $token = $sOption1;
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
@@ -58,8 +57,8 @@
 
     
     if (isset($argv[1])) {
-        $msg = "User Logined : " . $argv[1]. " | " .$argv[2]. " | " .$argv[3]. " | " . $argv[4]. " | " .$argv[5] ;
-        sendLineNotify($msg);
+        $msg = "User Logined : " . $argv[1]. " | " .$argv[2]. " | " .$argv[3]. " | " . $argv[4];
+        sendLineNotify($msg,$sOption1);
     }
 
 ?>

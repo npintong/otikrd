@@ -1,6 +1,6 @@
 
 exec line-notify-authen-pass {
      wait = no
-     program = "/usr/bin/php /usr/sbin/linenotify %{User-Name} %{Calling-Station-Id} %{Called-Station-Id} %{Event-Timestamp} ${NAS-Identifier}"
+     program = "/usr/bin/php /usr/sbin/byOtikLineNotify %{User-Name} %{Calling-Station-Id} %{Called-Station-Id} %{Event-Timestamp}"
      input_pairs = request
 }

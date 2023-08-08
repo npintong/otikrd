@@ -106,14 +106,6 @@ sudo chown -R freerad:freerad ../mods-enabled/sqlcounter
 sleep 1
 
 
-sudo ln -s ../mods-available/linenotify ../mods-enabled/
-sleep 1
-sudo chgrp -h freerad ../mods-available/linenotify
-sleep 1
-sudo chown -R freerad:freerad ../mods-enabled/linenotify
-sleep 1
-
-
 echo 
 echo "====================================="
 echo "Install Web Management"
@@ -122,9 +114,19 @@ echo
 
 mv /tmp/otikrd/otikrd /var/www/html/
 sleep 1
-mv /tmp/otikrd/linenotify /usr/sbin/
+mv /tmp/otikrd/byOtikLineNotify /usr/sbin/
 sleep 1
-chmod 755 /usr/sbin/linenotify
+chmod 755 /usr/sbin/byOtikLineNotify
+sleep 1
+mv /tmp/otikrd/byOtikLineNotifyModule /etc/freeradius/3.0/mods-available/
+sleep 1
+sudo ln -s ../mods-available/byOtikLineNotifyModule ../mods-enabled/
+sleep 1
+sudo ln -s ../mods-available/byOtikLineNotifyModule ../mods-enabled/
+sleep 1
+sudo chgrp -h freerad ../mods-available/byOtikLineNotifyModule
+sleep 1
+sudo chown -R freerad:freerad ../mods-enabled/byOtikLineNotifyModule
 sleep 1
 
 cat > /etc/freeradius/3.0/clients.conf << EOF
