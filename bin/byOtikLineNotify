@@ -1,0 +1,66 @@
+#!/usr/bin/env /bin/php
+<?php
+
+    // Location '/usr/sbin/'
+    // Database Connection
+    require_once('/var/www/html/otikrd/config.inc.php');   
+
+    // Query option
+    $tSQL = "SELECT * FROM tbl_master_setting WHERE id='1' LIMIT 1;";
+    $rs = $mcon->query($tSQL)->fetch_assoc();
+
+    $sOption1 = $rs['sOption1']; // Token
+    $sOption2 = $rs['sOption2']; // message 1
+    $sOption3 = $rs['sOption3']; // parameter 1
+    $sOption4 = $rs['sOption4']; // message 2
+    $sOption5 = $rs['sOption5']; // parameter 2
+    $sOption6 = $rs['sOption6']; // message 3
+    $sOption7 = $rs['sOption7']; // parameter 3
+    $iOption1 = $rs['iOption1']; // On and Off
+    $iOption2 = $rs['iOption2'];
+    $iOption2 = $rs['iOption2'];
+
+    // Chek off function 
+    if($iOption1 == 0){
+        exit();
+    }
+
+    // Check if empty token
+    if(empty($sOption1)){
+        exit();
+    }
+
+    // Function Notify
+    function sendLineNotify($message = "Notify-Option",$token='')
+    {
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://notify-api.line.me/api/notify");
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "message=" . $message);
+        $headers = array('Content-type: application/x-www-form-urlencoded', 'Authorization: Bearer ' . $token . '',);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($ch);
+
+        if (curl_error($ch)) {
+            echo 'error:' . curl_error($ch);
+        } else {
+            $res = json_decode($result, true);
+            echo "status : " . $res['status'];
+            echo "message : " . $res['message'];
+        }
+        curl_close($ch);
+    }
+
+    
+    if (isset($argv[1])) {
+        $msg = "$sOption2 : \nAccount = " . $argv[1]. "\nMac Addr = " .$argv[2]."\nTimeStamp = ".$argv[3]."\nClient IP = ".$argv[4]."\nNode = ".$argv[5];
+        sendLineNotify(urlencode($msg),$sOption1);
+    }
+  
+?>
+
+

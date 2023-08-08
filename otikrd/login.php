@@ -51,6 +51,8 @@ if(isset($_POST['cmdLogin'])){
 				
 				
 				// permission
+				$_SESSION['pSetting'] = $rows['uPersProfile'];
+				
 				$_SESSION['pProfile'] = $rows['uPersProfile'];
 				$_SESSION['pAccount'] = $rows['uPersAccount'];
 				$_SESSION['pReport'] = $rows['uPersReports'];

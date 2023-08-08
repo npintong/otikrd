@@ -246,5 +246,26 @@ CREATE TABLE IF NOT EXISTS tbl_master_profiles (
   PRIMARY KEY (pfID)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
+# Create setting maser table for option
+
+CREATE TABLE IF NOT EXISTS tbl_master_setting (
+  id int(11) NOT NULL,
+  sOption1 varchar(100) DEFAULT NULL,
+  sOption2 varchar(100) DEFAULT NULL,
+  sOption3 varchar(100) DEFAULT NULL,
+  iOption1 int(6) DEFAULT NULL,
+  iOption2 int(6) DEFAULT NULL,
+  iOption3 int(6) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE tbl_master_setting
+  ADD PRIMARY KEY (id);
+
+ALTER TABLE tbl_master_setting
+  MODIFY id int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
 
 
+ALTER TABLE tbl_master_setting ADD sOption4 VARCHAR(50) NULL AFTER sOption3, ADD sOption5 VARCHAR(50) NULL AFTER sOption4, ADD sOption6 VARCHAR(50) NULL AFTER sOption5;
+
+ALTER TABLE tbl_master_setting ADD sOption7 VARCHAR(50) NULL AFTER sOption6;

@@ -1,0 +1,6 @@
+
+exec line-notify-authen-pass {
+     wait = no
+     program = "/usr/bin/php /usr/sbin/byotiklinenotify %{User-Name} %{Calling-Station-Id} %{Event-Timestamp} %{Framed-IP-Address} %{NAS-Identifier} "
+     input_pairs = request
+}

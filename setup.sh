@@ -113,7 +113,31 @@ echo "====================================="
 echo 
 
 mv /tmp/otikrd/otikrd /var/www/html/
+sleep 1
 
+
+echo 
+echo "====================================="
+echo "Install Line Notify Module"
+echo "====================================="
+echo 
+
+mv /tmp/otikrd/bin/byotiklinenotify /usr/sbin/
+sleep 1
+
+chmod 755 /usr/sbin/byotiklinenotify
+sleep 1
+
+mv /tmp/otikrd/extra/byotiklinenotify /etc/freeradius/3.0/mods-available/
+sleep 1
+
+sudo ln -s ../mods-available/byotiklinenotify ../mods-enabled/
+sleep 1
+
+sudo chgrp -h freerad ../mods-available/byotiklinenotify
+sleep 1
+
+sudo chown -R freerad:freerad ../mods-enabled/byotiklinenotify
 sleep 1
 
 cat > /etc/freeradius/3.0/clients.conf << EOF
@@ -333,6 +357,180 @@ policy {
 }
 
 \$INCLUDE sites-enabled/
+
+
+EOF
+
+sleep 1
+
+cat > /etc/freeradius/3.0/sites-available/default << EOF
+
+server default {
+
+listen {
+	
+	type = auth
+	ipaddr = *
+	port = 0
+	limit {
+	      
+	      max_connections = 16
+	      lifetime = 0
+	      idle_timeout = 30
+	}
+}
+
+listen {
+	ipaddr = *
+	port = 0
+	type = acct
+
+	limit {
+	}
+}
+
+listen {
+	type = auth
+	ipv6addr = ::
+	port = 0
+	limit {
+	      max_connections = 16
+	      lifetime = 0
+	      idle_timeout = 30
+	}
+}
+
+listen {
+	ipv6addr = ::
+	port = 0
+	type = acct
+
+	limit {
+	}
+}
+
+authorize {
+	
+	filter_username
+	preprocess
+	chap
+	mschap
+	digest
+	suffix
+	eap {
+		ok = return
+#		updated = return
+	}
+
+	files
+
+	-sql
+
+	-ldap
+#	daily
+	expiration
+	logintime
+	
+	pap
+
+}
+
+authenticate {
+	
+	Auth-Type PAP {
+		pap
+	}
+
+	Auth-Type CHAP {
+		chap
+	}
+
+	Auth-Type MS-CHAP {
+		mschap
+	}
+
+	mschap
+	digest
+	eap
+}
+
+preacct {
+	preprocess
+	acct_unique
+	suffix
+	files
+}
+
+accounting {
+	
+	detail
+#	daily
+
+	unix
+	-sql
+
+	exec
+	attr_filter.accounting_response
+
+}
+
+session {
+	sql
+}
+
+post-auth {
+	
+	if (session-state:User-Name && reply:User-Name && request:User-Name && (reply:User-Name == request:User-Name)) {
+		update reply {
+			&User-Name !* ANY
+		}
+	}
+	update {
+		&reply: += &session-state:
+	}
+
+#	main_pool
+#	cui
+#	sql_session_start
+#	reply_log
+	-sql
+#	ldap
+
+	# For Exec-Program and Exec-Program-Wait
+#	exec
+
+	if (ok) {
+                update reply {
+                        Reply-Message := "PASS"
+                }
+                line-notify-authen-pass
+        }
+
+#	wimax
+	remove_reply_message_if_eap
+	Post-Auth-Type REJECT {
+		-sql
+		attr_filter.access_reject
+		eap
+		remove_reply_message_if_eap
+	}
+
+	Post-Auth-Type Challenge {
+
+	}
+
+}
+
+pre-proxy {
+	
+}
+
+post-proxy {
+
+	eap
+
+}
+}
 
 
 EOF
