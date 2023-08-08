@@ -19,7 +19,7 @@
         <?php
 				if($_SESSION['pSetting']==1){		
 			?>
-			<li <?php echo ($active == 'setting' ? "class=\"active\"": ""); ?> ><a href='setting.php'><i class="glyphicon glyphicon-alert"></i>ตั้งค่าแจ้งเตือน</a></li>
+			<li <?php echo ($active == 'setting' ? "class=\"active\"": ""); ?> ><a href='setting.php'><i class="glyphicon glyphicon-alert"></i>ตั้งค่าระบบ</a></li>
 				<?php } ?>
 				
 			<li <?php echo ($active == 'license' ? "class=\"active\"": ""); ?> ><a href='license.php'><i class="glyphicon glyphicon-info-sign"></i>ลิขสิทธิ์</a></li>

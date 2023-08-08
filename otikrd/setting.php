@@ -21,6 +21,7 @@
 		$tSQL = "UPDATE tbl_master_setting SET ";
     $tSQL .=" sOption1='".$_POST['sOption1']."',";
     $tSQL .=" sOption2='".$_POST['sOption2']."',";   
+    $tSQL .=" sOption3='".$_POST['sOption3']."',";   
     $tSQL .=" iOption1='".$_POST['iOption1']."',";
     $tSQL .=" iOption2=0,";
     $tSQL .=" iOption3=0";
@@ -106,7 +107,7 @@
                 <div class="widget">
                   <div class="widget-header">
                     <div class="title">
-						        ตั้งระบบการแจ้งเตือนผ่านไลน์แอบพลิเคชั่น | Line Notify
+						          ตั้งค่าการใช้งานในระบบ | Settings
                     </div>
                   </div>
 
@@ -118,6 +119,7 @@
 
                       $sOption1 = $rs['sOption1']; // token
                       $sOption2 = $rs['sOption2']; // 
+                      $sOption3 = $rs['sOption3']; // 
                       $iOption1 = $rs['iOption1']; // enable & disalbe
                       $iOption2 = $rs['iOption2'];
                       $iOption3 = $rs['iOption3'];
@@ -129,7 +131,7 @@
                     <form class="form-horizontal no-margin" method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
                     
                         <div class="form-group">
-                          <label for="acPassword" class="col-sm-2 control-label">การใช้งาน</label>
+                          <label for="acPassword" class="col-sm-2 control-label">การแจ้งเตือน</label>
                           <div class="col-sm-6">
                             <div class="form-check">
                               <input type="radio" class="form-check-input" id="op1" name="iOption1" value="1" <?=$result = ($iOption1 == '1') ? ' checked' : '';?>> &nbsp;เปิด
@@ -142,18 +144,38 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="acPassword" class="col-sm-2 control-label">โทคเค่น (Token)</label>
+                          <label for="sOption1" class="col-sm-2 control-label">Line Token</label>
                           <div class="col-sm-6">
                             <input type="text" class="form-control" id="sOption1" name="sOption1" maxlength="100" value="<?=$sOption1;?>" placeholder="กรอก Token ของไลน์">						
                           </div>
                         </div>
 
                         <div class="form-group">
-                          <label for="acPassword" class="col-sm-2 control-label">ข้อความที่</label>
+                          <label for="sOption2" class="col-sm-2 control-label">แสดงข้อความในไลน์</label>
                           <div class="col-sm-6">
                             <input type="text" class="form-control" id="sOption2" name="sOption2" maxlength="100" value="<?=$sOption2;?>" placeholder="กรอก ข้อความที่ 1">						
                           </div>
                         </div>
+<hr>
+                        <div class="form-group">
+                          <label for="sOption3" class="col-sm-2 control-label">API Token</label>
+                          <div class="col-sm-6">
+                            
+                            
+
+                            <div class="input-group">
+                              <input type="text" class="form-control" id="sOption3" name="sOption3" maxlength="100" value="<?=$sOption3;?>" placeholder="กรอก Token ของไลน์">						
+                                <span class="input-group-btn">
+                                  <button class="btn btn-primary" onclick="GenToken(30);" type="button">
+                                  <span class="glyphicon glyphicon-random" aria-hidden="true"></span> สร้างคีย์</button>
+                                </span>
+                            </div>
+
+                          </div>
+                        </div>
+
+                        
+
 
                         <div class="form-group">
                           <div class="col-sm-offset-2 col-sm-10">
@@ -272,7 +294,23 @@
     $("#success-msg").fadeTo(2000, 500).slideUp(500, function(){
       $("#success-msg").slideUp(500);
     });		
-		
+
+    
+    function GenToken(length) {
+      let result = '';
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      const charactersLength = characters.length;
+      let counter = 0;
+      while (counter < length) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        counter += 1;
+      }
+
+      document.getElementById('sOption3').value = result;
+
+  }
+
+
 	</script>
 	
 
