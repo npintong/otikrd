@@ -57,9 +57,10 @@
 
     
     if (isset($argv[1])) {
-        $msg = "User Logined : " . $argv[1]. " | " .$argv[2]. " | " .$argv[3]. " | " . $argv[4];
-        sendLineNotify($msg,$sOption1);
+        $msg = "$sOption2 : \nAccount = " . $argv[1]. "\nMac Addr = " .$argv[2]."\nTimeStamp = ".$argv[3]."\nClient IP = ".$argv[4]."\nNode = ".$argv[5];
+        sendLineNotify(urlencode($msg),$sOption1);
     }
-
+  
 ?>
+
 

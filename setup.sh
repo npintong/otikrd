@@ -114,19 +114,30 @@ echo
 
 mv /tmp/otikrd/otikrd /var/www/html/
 sleep 1
-mv /tmp/otikrd/byOtikLineNotify /usr/sbin/
+
+
+echo 
+echo "====================================="
+echo "Install Line Notify Module"
+echo "====================================="
+echo 
+
+mv /tmp/otikrd/bin/byotiklinenotify /usr/sbin/
 sleep 1
-chmod 755 /usr/sbin/byOtikLineNotify
+
+chmod 755 /usr/sbin/byotiklinenotify
 sleep 1
-mv /tmp/otikrd/byOtikLineNotifyModule /etc/freeradius/3.0/mods-available/
+
+mv /tmp/otikrd/extra/byotiklinenotify /etc/freeradius/3.0/mods-available/
 sleep 1
-sudo ln -s ../mods-available/byOtikLineNotifyModule ../mods-enabled/
+
+sudo ln -s ../mods-available/byotiklinenotify ../mods-enabled/
 sleep 1
-sudo ln -s ../mods-available/byOtikLineNotifyModule ../mods-enabled/
+
+sudo chgrp -h freerad ../mods-available/byotiklinenotify
 sleep 1
-sudo chgrp -h freerad ../mods-available/byOtikLineNotifyModule
-sleep 1
-sudo chown -R freerad:freerad ../mods-enabled/byOtikLineNotifyModule
+
+sudo chown -R freerad:freerad ../mods-enabled/byotiklinenotify
 sleep 1
 
 cat > /etc/freeradius/3.0/clients.conf << EOF
