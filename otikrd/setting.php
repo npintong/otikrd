@@ -20,9 +20,7 @@
 		
 		$tSQL = "UPDATE tbl_master_setting SET ";
     $tSQL .=" sOption1='".$_POST['sOption1']."',";
-    $tSQL .=" sOption2='".$_POST['sOption2']."',";
-    $tSQL .=" sOption3='".$_POST['sOption3']."',";
-    $tSQL .=" sOption4='".$_POST['sOption4']."',";    
+    $tSQL .=" sOption2='".$_POST['sOption2']."',";   
     $tSQL .=" iOption1='".$_POST['iOption1']."',";
     $tSQL .=" iOption2=0,";
     $tSQL .=" iOption3=0";
@@ -120,8 +118,6 @@
 
                       $sOption1 = $rs['sOption1']; // token
                       $sOption2 = $rs['sOption2']; // 
-                      $sOption3 = $rs['sOption3'];
-                      $sOption4 = $rs['sOption4'];
                       $iOption1 = $rs['iOption1']; // enable & disalbe
                       $iOption2 = $rs['iOption2'];
                       $iOption3 = $rs['iOption3'];
@@ -153,23 +149,9 @@
                         </div>
 
                         <div class="form-group">
-                          <label for="acPassword" class="col-sm-2 control-label">ข้อความที่ 1</label>
+                          <label for="acPassword" class="col-sm-2 control-label">ข้อความที่</label>
                           <div class="col-sm-6">
                             <input type="text" class="form-control" id="sOption2" name="sOption2" maxlength="100" value="<?=$sOption2;?>" placeholder="กรอก ข้อความที่ 1">						
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="acPassword" class="col-sm-2 control-label">ข้อความที่ 2</label>
-                          <div class="col-sm-6">
-                            <input type="text" class="form-control" id="sOption3" name="sOption3" maxlength="100" value="<?=$sOption3;?>" placeholder="กรอก ข้อความที่ 2">						
-                          </div>
-                        </div>
-
-                        <div class="form-group">
-                          <label for="acPassword" class="col-sm-2 control-label">ข้อความที่ 3</label>
-                          <div class="col-sm-6">
-                            <input type="text" class="form-control" id="sOption4" name="sOption4" maxlength="100" value="<?=$sOption4;?>" placeholder="กรอก ข้อความที่ 3">						
                           </div>
                         </div>
 
