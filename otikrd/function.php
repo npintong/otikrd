@@ -105,3 +105,39 @@ function dValidity($val){
 			return "Unlimit";	
 	}
 }
+
+
+function validateThaiCitizenID($citizenID) {
+    // Remove any non-digit characters from the input
+    $cleanedID = preg_replace('/\D/', '', $citizenID);
+    
+    // Check if the cleaned ID is exactly 13 digits
+    if (strlen($cleanedID) !== 13) {
+        return false;
+    }
+    
+    // Extract the individual digits for validation
+    $digits = str_split($cleanedID);
+    
+    // Calculate the checksum
+    $checksum = 0;
+    for ($i = 0; $i < 12; $i++) {
+        $checksum += (int)$digits[$i] * (13 - $i);
+    }
+    
+    // Calculate the expected checksum (last digit of the ID)
+    $expectedChecksum = $checksum % 11;
+    $expectedChecksum = ($expectedChecksum === 0) ? 1 : (11 - $expectedChecksum);
+    
+    // Compare the calculated checksum with the expected checksum
+    return (int)$digits[12] === $expectedChecksum;
+}
+
+function TimeNow(){
+
+	date_default_timezone_set('Asia/Bangkok');
+	$currentDateTime = date('Y-m-d H:i:s');
+
+	return $currentDateTime;
+
+}
