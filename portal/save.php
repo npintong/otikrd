@@ -38,4 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     curl_close($curl);
 
     echo json_encode($response);
+
+}else{
+    header("Location: index.php");
 }

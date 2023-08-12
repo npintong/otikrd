@@ -247,12 +247,23 @@
                       <div class="form-group">
                         <label for="tPersOnline" class="col-sm-3 control-label"><strong>สิทธิ์เมนู Online [ONL]</strong> </label>
                         <div class="col-sm-7">
-							<div class="radio">
-							  <label><input type="radio" name="tPersOnline" value="1"checked>ทุกอย่าง</label>							  
-							  <label><input type="radio" name="tPersOnline" value="0" >ไม่มีสิทธิ์</label>							  
-							</div>								
+                          <div class="radio">
+                            <label><input type="radio" name="tPersOnline" value="1"checked>ทุกอย่าง</label>							  
+                            <label><input type="radio" name="tPersOnline" value="0" >ไม่มีสิทธิ์</label>							  
+                          </div>								
                         </div>
                       </div>					  
+
+                      <div class="form-group">
+                        <label for="tPersOnline" class="col-sm-3 control-label"><strong>สิทธิ์เมนู Setting [SET]</strong> </label>
+                        <div class="col-sm-7">
+                          <div class="radio">
+                            <label><input type="radio" name="tSetting" value="1"checked>ทุกอย่าง</label>							  
+                            <label><input type="radio" name="tSetting" value="0" >ไม่มีสิทธิ์</label>							  
+                          </div>								
+                        </div>
+                      </div>	
+
                       <div class="form-group">
                         <label for="uGrpID" class="col-sm-3 control-label"><strong>สถานะ</strong> </label>
                         <div class="col-sm-7">

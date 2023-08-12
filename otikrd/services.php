@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     require_once('config.inc.php');
     require_once('function.php');
-    require_once('hash.php');
+    require_once('hash.php');    
 
     $tSQL = "SELECT sOption3 FROM tbl_master_setting WHERE id='1' LIMIT 1;";
     $rs = $mcon->query($tSQL)->fetch_assoc();
@@ -28,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
 
         if ($data === null) {
-            // JSON decoding failed
-            $response = array('error' => 'Invalid JSON data');
+            // JSON decoding failed            
+            $response = array('message' => 'error', 'data' => 'Invalid JSON data');
         } else {
             // JSON decoding successful
             if (isset($data['FirstName']) && isset($data['LastName']) && isset($data['CardID']) && isset($data['Mobile']) && isset($data['Email'])) {
@@ -49,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $WhoUpdate =  'register';
                 $DateUpdate =  TimeNow();
 
-                if(validateThaiCitizenID($CardID)==false){
-                    $response = array('error' => 'Invalid Citizen id');
+                if(validateThaiCitizenID($CardID)==false){                    
+                    $response = array('message' => 'error', 'data' => 'Invalid Citizen id');
                 }else{
                     $tSQL = "INSERT INTO tbl_trans_account";
                     $tSQL .= " (pfID,acUser,acPassWd,tNote,acStatus,FirstName,LastName,CardID,Email,Mobile,WhoCreate,DateCreate,WhoUpdate,DateUpdate)";
@@ -82,14 +82,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $data = array('UserName'=>$acUser,'Password'=>$acPassWd);                        
                         $response = array('message' => 'Successfully', 'data' => $data);
 
-                    }else{                              
-                        $response = array('error' => 'Can not insert data');
+                    }else{                                                      
+                        $response = array('message' => 'error', 'data' => 'Can not insert data');
                     }
                     
                 }
                 
-            }else{
-                $response = array('error' => 'Invalid JSON data');
+            }else{                
+                $response = array('message' => 'error', 'data' => 'Invalid JSON data');
             }
             
         }
