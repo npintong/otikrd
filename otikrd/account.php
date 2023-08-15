@@ -189,7 +189,8 @@ if(isset($_POST['btnSearch'])){
 						if($_SESSION['pAccount']== 1){
 							
 					?>
-                    <span class="tools"><a href="account_form.php"><span class="glyphicon glyphicon-plus-sign"></span> <strong>เพิ่มรายการ</strong></a> | <span class="tools"><a href="" data-toggle="modal" data-target="#myModalImport"><span class="glyphicon glyphicon-download-alt"></span> <strong>นำเข้าข้อมูล</strong></a> | <a href="#"><label id="pPrint"> <span class="glyphicon glyphicon-print"></span> พิมพ์รายการ</label></a> | <a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-search"></span> เงื่อนไขการแสดง</a></span>
+                    <span class="tools"><a href="account_form.php"><span class="glyphicon glyphicon-plus-sign"></span> <strong>เพิ่มรายการ</strong></a> 
+                    <!--| <span class="tools"><a href="" data-toggle="modal" data-target="#myModalImport"><span class="glyphicon glyphicon-download-alt"></span> <strong>นำเข้าข้อมูล</strong></a>--> | <a href="#"><label id="pPrint"> <span class="glyphicon glyphicon-print"></span> พิมพ์รายการ</label></a> | <a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-search"></span> เงื่อนไขการแสดง</a></span>
 						<?php }else{ ?>
 					<span class="tools"><a href="#"><label id="pPrint"> <span class="glyphicon glyphicon-print"></span> พิมพ์รายการ</label></a> | <a href="#" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-search"></span> เงื่อนไขการแสดง</a></span>	
 						<?php } ?>

@@ -1,15 +1,18 @@
 <?php
-   $mac=$_POST['mac'];
-   $ip=$_POST['ip'];
-   $username=$_POST['username'];
-   $linklogin=$_POST['link-login'];
-   $linkorig=$_POST['link-orig'];
-   $error=$_POST['error'];
-   $chapid=$_POST['chap-id'];
-   $chapchallenge=$_POST['chap-challenge'];
-   $linkloginonly=$_POST['link-login-only'];
-   $linkorigesc=$_POST['link-orig-esc'];
-   $macesc=$_POST['mac-esc'];
+
+    print_r($_POST);
+    
+    $mac=$_POST['mac'];
+    $ip=$_POST['ip'];
+    $username=$_POST['username'];
+    $linklogin=$_POST['link-login'];
+    $linkorig=$_POST['link-orig'];
+    $error=$_POST['error'];
+    $chapid=$_POST['chap-id'];
+    $chapchallenge=$_POST['chap-challenge'];
+    $linkloginonly=$_POST['link-login-only'];
+    $linkorigesc=$_POST['link-orig-esc'];
+    $macesc=$_POST['mac-esc'];
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
