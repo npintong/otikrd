@@ -75,7 +75,7 @@
                     </div>
                   </div>
                   <div class="widget-body">
-					Unlimit license
+					Community License
                   </div>
                 </div>
               </div>

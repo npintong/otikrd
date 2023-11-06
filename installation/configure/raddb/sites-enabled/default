@@ -1,0 +1,69 @@
+#########################################################
+#	CREATE BY 	: 	OTIKNETWORK CO.,LTD.				#						
+#	PROJECT		:	OTIKRD PROJECT						#
+#########################################################
+
+authorize {
+	preprocess
+	chap
+	mschap
+	digest
+	suffix
+	eap {
+		ok = return
+	}
+	files
+	sql
+	checkval
+	expiration
+	logintime
+	noresetcounter
+	monthlycounter
+	expire_on_login	
+	
+	pap
+}
+authenticate {
+	Auth-Type PAP {
+		pap
+	}
+	Auth-Type CHAP {
+		chap
+	}
+	Auth-Type MS-CHAP {
+		mschap
+	}
+	digest
+	unix
+	eap
+}
+preacct {
+	preprocess
+	acct_unique
+	suffix
+	files
+}
+accounting {
+	detail
+	sql
+	sql_log
+	exec
+	attr_filter.accounting_response
+}
+session {
+	radutmp
+	sql
+}
+post-auth {
+	sql
+	sql_log
+	exec
+	Post-Auth-Type REJECT {
+		attr_filter.access_reject
+	}
+}
+pre-proxy {
+}
+post-proxy {
+	eap
+}
