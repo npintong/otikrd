@@ -122,6 +122,8 @@ echo "Install Line Notify Module"
 echo "====================================="
 echo 
 
+mv /tmp/otikrd/bin/byOtikLineNotify /tmp/otikrd/bin/byotiklinenotify
+
 mv /tmp/otikrd/bin/byotiklinenotify /usr/sbin/
 sleep 1
 
